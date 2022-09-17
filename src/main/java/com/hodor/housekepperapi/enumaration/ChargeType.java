@@ -1,6 +1,6 @@
 package com.hodor.housekepperapi.enumaration;
 
-public enum LoadType {
+public enum ChargeType {
     VARIABLE,
     FIXED
 }

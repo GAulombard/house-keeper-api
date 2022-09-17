@@ -1,6 +1,6 @@
 package com.hodor.housekepperapi.entity;
 
-import com.hodor.housekepperapi.enumaration.LoadType;
+import com.hodor.housekepperapi.enumaration.ChargeType;
 import com.hodor.housekepperapi.enumaration.RecurrenceType;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -28,7 +28,7 @@ public class Charge implements Serializable {
     private String label;
     private Long value;
     private String reference;
-    private LoadType loadType;
+    private ChargeType chargeType;
     private RecurrenceType recurrenceType;
 
     @Override
