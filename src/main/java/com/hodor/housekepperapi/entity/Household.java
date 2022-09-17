@@ -2,8 +2,6 @@ package com.hodor.housekepperapi.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,7 +25,7 @@ public class Household implements Serializable {
     private List<Member> members = new java.util.ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
-    private List<JointLoad> loads = new java.util.ArrayList<>();
+    private List<JointCharge> charges = new java.util.ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
     private List<JointLoan> loans = new java.util.ArrayList<>();

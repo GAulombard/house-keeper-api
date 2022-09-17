@@ -6,23 +6,24 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "joint_load")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class JointLoad {
+@Table(name = "charge")
+public class Charge implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "household_id")
-    private Household household;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     private String label;
     private Long value;
@@ -34,8 +35,8 @@ public class JointLoad {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        JointLoad jointLoad = (JointLoad) o;
-        return id != null && Objects.equals(id, jointLoad.id);
+        Charge charge = (Charge) o;
+        return id != null && Objects.equals(id, charge.id);
     }
 
     @Override

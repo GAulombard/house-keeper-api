@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Member {
+public class Member implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,7 @@ public class Member {
     private String mail;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
-    private List<Load> loads;
+    private List<Charge> charges;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     private List<Loan> loans;
