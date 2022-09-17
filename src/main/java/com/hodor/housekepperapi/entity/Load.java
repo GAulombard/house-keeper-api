@@ -11,15 +11,13 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "load")
 public class Load {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false, updatable = false)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "household_id")
     private Household household;
 
     @Override

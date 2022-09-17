@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "member")
 @Getter
 @Setter
 @ToString
@@ -16,11 +15,10 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false, updatable = false)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "household_id")
     private Household household;
 
 
