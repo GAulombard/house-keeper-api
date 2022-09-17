@@ -18,6 +18,7 @@ public class Loan {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "household_id")
     private Household household;
 
     @Override

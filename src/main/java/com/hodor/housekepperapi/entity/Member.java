@@ -19,6 +19,7 @@ public class Member {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "household_id")
     private Household household;
 
 
