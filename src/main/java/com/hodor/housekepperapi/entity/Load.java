@@ -1,5 +1,7 @@
 package com.hodor.housekepperapi.entity;
 
+import com.hodor.housekepperapi.enumaration.LoadType;
+import com.hodor.housekepperapi.enumaration.RecurrenceType;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -11,15 +13,22 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "load")
 public class Load {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "household_id")
-    private Household household;
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    private String label;
+    private Long value;
+    private String reference;
+    private LoadType loadType;
+    private RecurrenceType recurrenceType;
 
     @Override
     public boolean equals(Object o) {

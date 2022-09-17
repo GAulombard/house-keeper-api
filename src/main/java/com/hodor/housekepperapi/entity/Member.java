@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,12 +16,25 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "household_id")
     private Household household;
+
+    private String firstName;
+    private String lastName;
+    private String mail;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<Load> loads;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<Loan> loans;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<Income> incomes = new java.util.ArrayList<>();
 
 
     @Override

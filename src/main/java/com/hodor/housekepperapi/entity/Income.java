@@ -1,21 +1,20 @@
 package com.hodor.housekepperapi.entity;
 
-import com.hodor.housekepperapi.enumaration.LoanType;
+import com.hodor.housekepperapi.enumaration.IncomeType;
 import com.hodor.housekepperapi.enumaration.RecurrenceType;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@Table(name = "income")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "loan")
-public class Loan {
+public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -27,18 +26,17 @@ public class Loan {
 
     private String label;
     private Long value;
-    private String reference;
-    private LoanType loanType;
     private RecurrenceType recurrenceType;
-    private LocalDateTime originalDate;
-    private LocalDateTime finalDate;
+    private IncomeType incomeType;
+    private String reference;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Loan loan = (Loan) o;
-        return id != null && Objects.equals(id, loan.id);
+        Income income = (Income) o;
+        return id != null && Objects.equals(id, income.id);
     }
 
     @Override

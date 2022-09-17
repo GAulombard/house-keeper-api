@@ -19,20 +19,18 @@ public class Household implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Integer id;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "household")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
     private List<Member> members = new java.util.ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "household")
-    private List<Load> loads = new java.util.ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
+    private List<JointLoad> loads = new java.util.ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "household")
-    private List<Loan> loans = new java.util.ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
+    private List<JointLoan> loans = new java.util.ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
