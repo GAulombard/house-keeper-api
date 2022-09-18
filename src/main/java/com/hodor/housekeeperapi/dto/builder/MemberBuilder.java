@@ -3,6 +3,7 @@ package com.hodor.housekeeperapi.dto.builder;
 import com.hodor.housekeeperapi.dto.create.MemberCreateDto;
 import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberReadDto;
+import com.hodor.housekeeperapi.dto.update.MemberUpdateDto;
 import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.entity.Member;
 import org.springframework.stereotype.Service;
@@ -53,4 +54,13 @@ public class MemberBuilder {
         return readDtos;
     }
 
+    public Member memberUpdateDtoToMember(MemberUpdateDto updateDto, Household household) {
+        Member member = new Member();
+        member.setId(updateDto.getId());
+        member.setFirstName(updateDto.getFirstName());
+        member.setLastName(updateDto.getLastName());
+        member.setMail(updateDto.getMail());
+        member.setHousehold(household);
+        return member;
+    }
 }

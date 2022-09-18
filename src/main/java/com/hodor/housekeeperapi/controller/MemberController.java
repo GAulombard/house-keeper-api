@@ -2,6 +2,7 @@ package com.hodor.housekeeperapi.controller;
 
 import com.hodor.housekeeperapi.dto.create.MemberCreateDto;
 import com.hodor.housekeeperapi.dto.read.MemberReadDto;
+import com.hodor.housekeeperapi.dto.update.MemberUpdateDto;
 import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
 import com.hodor.housekeeperapi.exception.MemberNotFoundException;
 import com.hodor.housekeeperapi.service.MemberService;
@@ -32,5 +33,15 @@ public class MemberController {
     @GetMapping("/1.0/read-all")
     public ResponseEntity<List<MemberReadDto>> readAll() {
         return new ResponseEntity<>(memberService.readAll(), HttpStatus.OK);
+    }
+
+    @PutMapping("/1.0/update")
+    public ResponseEntity<MemberReadDto> update(@RequestBody MemberUpdateDto updateDto) throws HouseholdNotFoundException, MemberNotFoundException {
+        return new ResponseEntity<>(memberService.update(updateDto),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/1.0/delete/{id}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable("id") Integer id) throws MemberNotFoundException {
+        return new ResponseEntity<>(memberService.deleteById(id),HttpStatus.OK);
     }
 }
