@@ -5,8 +5,8 @@ import com.hodor.housekeeperapi.dto.create.MemberCreateDto;
 import com.hodor.housekeeperapi.dto.read.MemberReadDto;
 import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.entity.Member;
-import com.hodor.housekeeperapi.exception.HouseholdNotFindException;
-import com.hodor.housekeeperapi.exception.MemberNotFindException;
+import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
+import com.hodor.housekeeperapi.exception.MemberNotFoundException;
 import com.hodor.housekeeperapi.repository.HouseholdRepository;
 import com.hodor.housekeeperapi.repository.MemberRepository;
 import com.hodor.housekeeperapi.service.MemberService;
@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -27,10 +26,10 @@ public class MemberServiceImpl implements MemberService {
     private MemberBuilder memberBuilder;
 
     @Override
-    public MemberReadDto create(MemberCreateDto createDto) throws HouseholdNotFindException {
+    public MemberReadDto create(MemberCreateDto createDto) throws HouseholdNotFoundException {
 
         Household household = householdRepository.findById(createDto.getHousehold())
-                .orElseThrow(() -> new HouseholdNotFindException("household not find"));
+                .orElseThrow(() -> new HouseholdNotFoundException("household not found"));
 
         Member member = memberRepository.save(memberBuilder.memberCreateDtoToMember(createDto,household));
 
@@ -38,10 +37,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberReadDto readById(Integer id) throws MemberNotFindException {
+    public MemberReadDto readById(Integer id) throws MemberNotFoundException {
 
         Member member = memberRepository.findById(id)
-                .orElseThrow(() -> new MemberNotFindException("member not find"));
+                .orElseThrow(() -> new MemberNotFoundException("member not found"));
 
         return memberBuilder.memberToMemberReadDto(member);
     }

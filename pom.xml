@@ -11,8 +11,8 @@
     <groupId>com.hodor</groupId>
     <artifactId>house-kepper-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>house-kepper-api</name>
-    <description>house-kepper-api</description>
+    <name>house-keeper-api</name>
+    <description>house-keeper-api</description>
     <properties>
         <java.version>18</java.version>
     </properties>

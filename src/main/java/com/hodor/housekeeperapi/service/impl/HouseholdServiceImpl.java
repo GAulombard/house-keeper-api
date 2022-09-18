@@ -6,7 +6,7 @@ import com.hodor.housekeeperapi.dto.create.HouseholdCreateDto;
 import com.hodor.housekeeperapi.dto.read.HouseholdReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
 import com.hodor.housekeeperapi.entity.Household;
-import com.hodor.housekeeperapi.exception.HouseholdNotFindException;
+import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
 import com.hodor.housekeeperapi.repository.HouseholdRepository;
 import com.hodor.housekeeperapi.service.HouseholdService;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -32,9 +31,9 @@ public class HouseholdServiceImpl implements HouseholdService {
     }
 
     @Override
-    public HouseholdReadDto readById(Integer id) throws HouseholdNotFindException {
+    public HouseholdReadDto readById(Integer id) throws HouseholdNotFoundException {
         Household household = householdRepository.findById(id)
-                .orElseThrow(() -> new HouseholdNotFindException("household not find"));
+                .orElseThrow(() -> new HouseholdNotFoundException("household not found"));
 
         List<MemberCompactReadDto> compactReadDtos = memberBuilder.memberToMemberCompactReadDto(household.getMembers());
 

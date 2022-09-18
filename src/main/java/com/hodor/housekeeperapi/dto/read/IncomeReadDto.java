@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class IncomeReadDto implements Serializable {
 
     private Integer id;
-    private MemberCompactReadDto memberCompactReadDto;
+    private MemberCompactReadDto member;
     private String label;
     private Long value;
     private String recurrenceType;

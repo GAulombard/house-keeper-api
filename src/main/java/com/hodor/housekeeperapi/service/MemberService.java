@@ -2,17 +2,15 @@ package com.hodor.housekeeperapi.service;
 
 import com.hodor.housekeeperapi.dto.create.MemberCreateDto;
 import com.hodor.housekeeperapi.dto.read.MemberReadDto;
-import com.hodor.housekeeperapi.entity.Member;
-import com.hodor.housekeeperapi.exception.HouseholdNotFindException;
-import com.hodor.housekeeperapi.exception.MemberNotFindException;
+import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
+import com.hodor.housekeeperapi.exception.MemberNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MemberService {
-    MemberReadDto create(MemberCreateDto createDto) throws HouseholdNotFindException;
+    MemberReadDto create(MemberCreateDto createDto) throws HouseholdNotFoundException;
 
-    MemberReadDto readById(Integer id) throws MemberNotFindException;
+    MemberReadDto readById(Integer id) throws MemberNotFoundException;
 
     List<MemberReadDto> readAll();
 }

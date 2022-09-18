@@ -2,8 +2,7 @@ package com.hodor.housekeeperapi.controller;
 
 import com.hodor.housekeeperapi.dto.create.HouseholdCreateDto;
 import com.hodor.housekeeperapi.dto.read.HouseholdReadDto;
-import com.hodor.housekeeperapi.entity.Household;
-import com.hodor.housekeeperapi.exception.HouseholdNotFindException;
+import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
 import com.hodor.housekeeperapi.service.HouseholdService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/household")
@@ -26,7 +24,7 @@ public class HouseholdController {
     }
 
     @GetMapping("/1.0/read/{id}")
-    public ResponseEntity<HouseholdReadDto> readById(@PathVariable("id") Integer id) throws HouseholdNotFindException {
+    public ResponseEntity<HouseholdReadDto> readById(@PathVariable("id") Integer id) throws HouseholdNotFoundException {
         return new ResponseEntity<>(householdService.readById(id), HttpStatus.OK);
     }
 

@@ -5,8 +5,6 @@ import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberReadDto;
 import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.entity.Member;
-import com.hodor.housekeeperapi.exception.HouseholdNotFindException;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
