@@ -1,7 +1,6 @@
 package com.hodor.housekeeperapi.dto.read;
 
 import com.hodor.housekeeperapi.entity.JointCharge;
-import com.hodor.housekeeperapi.entity.JointLoan;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,6 @@ public class HouseholdReadDto implements Serializable {
     private String name;
     private List<MemberCompactReadDto> members;
     private List<JointCharge> charges;
-    private List<JointLoan> loans;
+    private List<JointLoanReadDto> loans;
 
 }

@@ -5,12 +5,16 @@ import com.hodor.housekeeperapi.dto.read.HouseholdReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
 import com.hodor.housekeeperapi.dto.update.HouseholdUpdateDto;
 import com.hodor.housekeeperapi.entity.Household;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class HouseholdBuilder {
+
+    private JointLoanBuilder jointLoanBuilder;
 
     public Household householdCreateDtoToHousehold(HouseholdCreateDto createDto) {
         Household household = new Household();
@@ -24,7 +28,7 @@ public class HouseholdBuilder {
         readDto.setName(household.getName());
         readDto.setMembers(members);
         readDto.setCharges(household.getCharges());
-        readDto.setLoans(household.getLoans());
+        readDto.setLoans(jointLoanBuilder.jointLoanToJointLoanReadDto(household.getLoans()));
         return readDto;
     }
 

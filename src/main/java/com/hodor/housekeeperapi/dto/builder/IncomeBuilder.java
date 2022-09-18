@@ -6,9 +6,11 @@ import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
 import com.hodor.housekeeperapi.dto.update.IncomeUpdateDro;
 import com.hodor.housekeeperapi.entity.Income;
 import com.hodor.housekeeperapi.entity.Member;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class IncomeBuilder {
     public Income incomeCreateDtoToIncome(IncomeCreateDto createDto, Member member) {
         Income income = new Income();

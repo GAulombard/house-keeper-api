@@ -6,12 +6,14 @@ import com.hodor.housekeeperapi.dto.read.MemberReadDto;
 import com.hodor.housekeeperapi.dto.update.MemberUpdateDto;
 import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.entity.Member;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class MemberBuilder {
 
     public Member memberCreateDtoToMember(MemberCreateDto createDto, Household household) {
