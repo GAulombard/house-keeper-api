@@ -2,6 +2,7 @@ package com.hodor.housekeeperapi.controller;
 
 import com.hodor.housekeeperapi.dto.create.IncomeCreateDto;
 import com.hodor.housekeeperapi.dto.read.IncomeReadDto;
+import com.hodor.housekeeperapi.dto.update.IncomeUpdateDro;
 import com.hodor.housekeeperapi.exception.IncomeNotFoundException;
 import com.hodor.housekeeperapi.exception.MemberNotFoundException;
 import com.hodor.housekeeperapi.service.IncomeService;
@@ -34,6 +35,16 @@ public class IncomeController {
     @GetMapping("/1.0/read-all")
     public ResponseEntity<List<IncomeReadDto>> readAll() {
         return new ResponseEntity<>(incomeService.readAll(),HttpStatus.OK);
+    }
+
+    @PutMapping("/1.0/update")
+    public ResponseEntity<IncomeReadDto> update(@RequestBody IncomeUpdateDro updateDto) throws IncomeNotFoundException, MemberNotFoundException {
+        return new ResponseEntity<>(incomeService.update(updateDto),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/1.0/delete/{id}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable("id") Integer id) throws IncomeNotFoundException {
+        return new ResponseEntity<>(incomeService.deleteById(id),HttpStatus.OK);
     }
 
 }

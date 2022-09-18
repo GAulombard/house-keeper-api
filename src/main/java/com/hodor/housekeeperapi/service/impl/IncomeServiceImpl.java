@@ -4,6 +4,7 @@ import com.hodor.housekeeperapi.dto.builder.IncomeBuilder;
 import com.hodor.housekeeperapi.dto.builder.MemberBuilder;
 import com.hodor.housekeeperapi.dto.create.IncomeCreateDto;
 import com.hodor.housekeeperapi.dto.read.IncomeReadDto;
+import com.hodor.housekeeperapi.dto.update.IncomeUpdateDro;
 import com.hodor.housekeeperapi.entity.Income;
 import com.hodor.housekeeperapi.entity.Member;
 import com.hodor.housekeeperapi.exception.IncomeNotFoundException;
@@ -28,11 +29,14 @@ public class IncomeServiceImpl implements IncomeService {
     private IncomeBuilder incomeBuilder;
     private MemberBuilder memberBuilder;
 
+    private static final String INCOME_NOT_FOUND = "Income not found.";
+    private static final String MEMBER_NOT_FOUND = "Member not found.";
+
     @Override
     public IncomeReadDto create(IncomeCreateDto createDto) throws MemberNotFoundException {
 
         Member member = memberRepository.findById(createDto.getMemberId())
-                .orElseThrow(() -> new MemberNotFoundException("member not found"));
+                .orElseThrow(() -> new MemberNotFoundException(MEMBER_NOT_FOUND));
         Income income = incomeRepository.save(incomeBuilder.incomeCreateDtoToIncome(createDto,member));
 
         return incomeBuilder.incomeToIncomeReadDto(income,memberBuilder.memberToMemberCompactReadDto(member));
@@ -41,7 +45,7 @@ public class IncomeServiceImpl implements IncomeService {
     @Override
     public IncomeReadDto readById(Integer id) throws IncomeNotFoundException {
         Income income = incomeRepository.findById(id)
-                .orElseThrow(() -> new IncomeNotFoundException("income not found"));
+                .orElseThrow(() -> new IncomeNotFoundException(INCOME_NOT_FOUND));
 
         return incomeBuilder.incomeToIncomeReadDto(income,memberBuilder.memberToMemberCompactReadDto(income.getMember()));
     }
@@ -55,5 +59,21 @@ public class IncomeServiceImpl implements IncomeService {
                 memberBuilder.memberToMemberCompactReadDto(income.getMember()))));
 
         return readDtos;
+    }
+
+    @Override
+    public IncomeReadDto update(IncomeUpdateDro updateDto) throws IncomeNotFoundException, MemberNotFoundException {
+        if(!incomeRepository.existsById(updateDto.getId())) throw new IncomeNotFoundException(INCOME_NOT_FOUND);
+        Member member = memberRepository.findById(updateDto.getMemberId())
+                .orElseThrow(() -> new MemberNotFoundException(MEMBER_NOT_FOUND));
+        Income income = incomeRepository.save(incomeBuilder.incomeUpdateDtoToIncome(updateDto,member));
+        return incomeBuilder.incomeToIncomeReadDto(income,memberBuilder.memberToMemberCompactReadDto(income.getMember()));
+    }
+
+    @Override
+    public Boolean deleteById(Integer id) throws IncomeNotFoundException {
+        if(!incomeRepository.existsById(id)) throw new IncomeNotFoundException(INCOME_NOT_FOUND);
+        incomeRepository.deleteById(id);
+        return true;
     }
 }

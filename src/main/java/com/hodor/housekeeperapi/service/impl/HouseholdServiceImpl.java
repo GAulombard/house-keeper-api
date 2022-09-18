@@ -60,9 +60,7 @@ public class HouseholdServiceImpl implements HouseholdService {
     public HouseholdReadDto update(HouseholdUpdateDto updateDto) throws HouseholdNotFoundException {
 
 
-        if(!householdRepository.existsById(updateDto.getId())) {
-            throw new HouseholdNotFoundException(HOUSEHOLD_NOT_FOUND);
-        }
+        if(!householdRepository.existsById(updateDto.getId())) throw new HouseholdNotFoundException(HOUSEHOLD_NOT_FOUND);
 
         Household household = householdRepository.save(householdBuilder.householdUpdateDtoToHousehold(updateDto));
 

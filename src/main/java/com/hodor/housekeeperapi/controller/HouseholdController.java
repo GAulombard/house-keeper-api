@@ -35,7 +35,7 @@ public class HouseholdController {
     }
 
     @PutMapping ("/1.0/update")
-    public ResponseEntity<HouseholdReadDto> create(@RequestBody HouseholdUpdateDto updateDto) throws HouseholdNotFoundException {
+    public ResponseEntity<HouseholdReadDto> update(@RequestBody HouseholdUpdateDto updateDto) throws HouseholdNotFoundException {
         return new ResponseEntity<>(householdService.update(updateDto), HttpStatus.OK);
     }
 

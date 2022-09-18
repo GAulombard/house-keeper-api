@@ -3,6 +3,7 @@ package com.hodor.housekeeperapi.dto.builder;
 import com.hodor.housekeeperapi.dto.create.IncomeCreateDto;
 import com.hodor.housekeeperapi.dto.read.IncomeReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
+import com.hodor.housekeeperapi.dto.update.IncomeUpdateDro;
 import com.hodor.housekeeperapi.entity.Income;
 import com.hodor.housekeeperapi.entity.Member;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,17 @@ public class IncomeBuilder {
         readDto.setMember(member);
         readDto.setRecurrenceType(income.getRecurrenceType().getLabel());
         return readDto;
+    }
+
+    public Income incomeUpdateDtoToIncome(IncomeUpdateDro updateDto, Member member) {
+        Income income = new Income();
+        income.setId(updateDto.getId());
+        income.setRecurrenceType(updateDto.getRecurrenceType());
+        income.setIncomeType(updateDto.getIncomeType());
+        income.setMember(member);
+        income.setLabel(updateDto.getLabel());
+        income.setValue(updateDto.getValue());
+        income.setReference(updateDto.getReference());
+        return income;
     }
 }
