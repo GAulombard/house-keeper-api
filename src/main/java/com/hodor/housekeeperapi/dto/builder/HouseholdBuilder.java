@@ -3,6 +3,7 @@ package com.hodor.housekeeperapi.dto.builder;
 import com.hodor.housekeeperapi.dto.create.HouseholdCreateDto;
 import com.hodor.housekeeperapi.dto.read.HouseholdReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
+import com.hodor.housekeeperapi.dto.update.HouseholdUpdateDto;
 import com.hodor.housekeeperapi.entity.Household;
 import org.springframework.stereotype.Service;
 
@@ -37,4 +38,10 @@ public class HouseholdBuilder {
         return readDtos;
     }
 
+    public Household householdUpdateDtoToHousehold(HouseholdUpdateDto updateDto) {
+        Household household = new Household();
+        household.setId(updateDto.getId());
+        household.setName(updateDto.getName());
+        return household;
+    }
 }

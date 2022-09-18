@@ -2,6 +2,7 @@ package com.hodor.housekeeperapi.controller;
 
 import com.hodor.housekeeperapi.dto.create.HouseholdCreateDto;
 import com.hodor.housekeeperapi.dto.read.HouseholdReadDto;
+import com.hodor.housekeeperapi.dto.update.HouseholdUpdateDto;
 import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
 import com.hodor.housekeeperapi.service.HouseholdService;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,11 @@ public class HouseholdController {
     @GetMapping("/1.0/read-all")
     public ResponseEntity<List<HouseholdReadDto>> readAll() {
         return new ResponseEntity<>(householdService.readAll(), HttpStatus.OK);
+    }
+
+    @PutMapping ("/1.0/update")
+    public ResponseEntity<HouseholdReadDto> create(@RequestBody HouseholdUpdateDto updateDto) throws HouseholdNotFoundException {
+        return new ResponseEntity<>(householdService.update(updateDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/1.0/delete/{id}")

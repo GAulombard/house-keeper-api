@@ -5,6 +5,7 @@ import com.hodor.housekeeperapi.dto.builder.MemberBuilder;
 import com.hodor.housekeeperapi.dto.create.HouseholdCreateDto;
 import com.hodor.housekeeperapi.dto.read.HouseholdReadDto;
 import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
+import com.hodor.housekeeperapi.dto.update.HouseholdUpdateDto;
 import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
 import com.hodor.housekeeperapi.repository.HouseholdRepository;
@@ -54,10 +55,25 @@ public class HouseholdServiceImpl implements HouseholdService {
     }
 
     @Override
+    public HouseholdReadDto update(HouseholdUpdateDto updateDto) throws HouseholdNotFoundException {
+
+
+        if(!householdRepository.existsById(updateDto.getId())) {
+            throw new HouseholdNotFoundException("household not found");
+        }
+
+        Household household = householdRepository.save(householdBuilder.householdUpdateDtoToHousehold(updateDto));
+
+        return householdBuilder.householdToHouseholdReadDto(household,
+                memberBuilder.memberToMemberCompactReadDto(household.getMembers()));
+    }
+
+    @Override
     public void deleteById(Integer id) throws HouseholdNotFoundException {
         if(!householdRepository.existsById(id)) {
             throw new HouseholdNotFoundException("household not found");
         }
         householdRepository.deleteById(id);
     }
+
 }
