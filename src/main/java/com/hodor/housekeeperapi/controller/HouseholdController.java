@@ -32,4 +32,10 @@ public class HouseholdController {
     public ResponseEntity<List<HouseholdReadDto>> readAll() {
         return new ResponseEntity<>(householdService.readAll(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/1.0/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable("id") Integer id) throws HouseholdNotFoundException {
+        householdService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

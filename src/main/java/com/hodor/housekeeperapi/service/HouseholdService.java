@@ -12,4 +12,6 @@ public interface HouseholdService {
     HouseholdReadDto readById(Integer id) throws HouseholdNotFoundException;
 
     List<HouseholdReadDto> readAll();
+
+    void deleteById(Integer id) throws HouseholdNotFoundException;
 }

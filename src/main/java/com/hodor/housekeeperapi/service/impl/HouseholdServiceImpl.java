@@ -52,4 +52,12 @@ public class HouseholdServiceImpl implements HouseholdService {
 
         return readDtos;
     }
+
+    @Override
+    public void deleteById(Integer id) throws HouseholdNotFoundException {
+        if(!householdRepository.existsById(id)) {
+            throw new HouseholdNotFoundException("household not found");
+        }
+        householdRepository.deleteById(id);
+    }
 }

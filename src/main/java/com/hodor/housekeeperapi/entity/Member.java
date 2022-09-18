@@ -29,15 +29,15 @@ public class Member implements Serializable {
     private String lastName;
     private String mail;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Charge> charges;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Loan> loans;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Income> incomes = new ArrayList<>();
 

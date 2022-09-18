@@ -1,7 +1,5 @@
 package com.hodor.housekeeperapi.dto.read;
 
-import com.hodor.housekeeperapi.enumaration.IncomeType;
-import com.hodor.housekeeperapi.enumaration.RecurrenceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

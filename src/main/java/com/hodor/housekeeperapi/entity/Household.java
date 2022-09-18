@@ -22,15 +22,15 @@ public class Household implements Serializable {
     private Integer id;
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Member> members = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<JointCharge> charges = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "household",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<JointLoan> loans = new ArrayList<>();
 
