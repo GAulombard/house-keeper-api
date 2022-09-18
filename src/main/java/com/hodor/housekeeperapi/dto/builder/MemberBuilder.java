@@ -34,9 +34,7 @@ public class MemberBuilder {
 
     public List<MemberReadDto> memberToMemberReadDto(List<Member> members) {
         List<MemberReadDto> readDtos = new ArrayList<>();
-        members.iterator().forEachRemaining(member -> {
-            readDtos.add(memberToMemberReadDto(member));
-        });
+        members.iterator().forEachRemaining(member -> readDtos.add(memberToMemberReadDto(member)));
         return readDtos;
     }
 
@@ -51,9 +49,7 @@ public class MemberBuilder {
 
     public List<MemberCompactReadDto> memberToMemberCompactReadDto(List<Member> members) {
         List<MemberCompactReadDto> readDtos = new ArrayList<>();
-        members.iterator().forEachRemaining(member -> {
-            readDtos.add(memberToMemberCompactReadDto(member));
-        });
+        members.iterator().forEachRemaining(member -> readDtos.add(memberToMemberCompactReadDto(member)));
         return readDtos;
     }
 

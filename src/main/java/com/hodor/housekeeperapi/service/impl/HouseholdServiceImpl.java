@@ -25,6 +25,8 @@ public class HouseholdServiceImpl implements HouseholdService {
     private HouseholdRepository householdRepository;
     private HouseholdBuilder householdBuilder;
     private MemberBuilder memberBuilder;
+
+    private static final String HOUSEHOLD_NOT_FOUND = "Household not found.";
     @Override
     public HouseholdReadDto create(HouseholdCreateDto createDto) {
         Household household = householdRepository.save(householdBuilder.householdCreateDtoToHousehold(createDto));
@@ -34,7 +36,7 @@ public class HouseholdServiceImpl implements HouseholdService {
     @Override
     public HouseholdReadDto readById(Integer id) throws HouseholdNotFoundException {
         Household household = householdRepository.findById(id)
-                .orElseThrow(() -> new HouseholdNotFoundException("household not found"));
+                .orElseThrow(() -> new HouseholdNotFoundException(HOUSEHOLD_NOT_FOUND));
 
         List<MemberCompactReadDto> compactReadDtos = memberBuilder.memberToMemberCompactReadDto(household.getMembers());
 
@@ -59,7 +61,7 @@ public class HouseholdServiceImpl implements HouseholdService {
 
 
         if(!householdRepository.existsById(updateDto.getId())) {
-            throw new HouseholdNotFoundException("household not found");
+            throw new HouseholdNotFoundException(HOUSEHOLD_NOT_FOUND);
         }
 
         Household household = householdRepository.save(householdBuilder.householdUpdateDtoToHousehold(updateDto));
@@ -69,11 +71,12 @@ public class HouseholdServiceImpl implements HouseholdService {
     }
 
     @Override
-    public void deleteById(Integer id) throws HouseholdNotFoundException {
+    public Boolean deleteById(Integer id) throws HouseholdNotFoundException {
         if(!householdRepository.existsById(id)) {
-            throw new HouseholdNotFoundException("household not found");
+            throw new HouseholdNotFoundException(HOUSEHOLD_NOT_FOUND);
         }
         householdRepository.deleteById(id);
+        return true;
     }
 
 }

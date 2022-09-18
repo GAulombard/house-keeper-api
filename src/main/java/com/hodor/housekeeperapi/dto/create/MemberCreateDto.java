@@ -1,6 +1,5 @@
 package com.hodor.housekeeperapi.dto.create;
 
-import com.hodor.housekeeperapi.entity.Household;
 import lombok.*;
 
 import java.io.Serializable;

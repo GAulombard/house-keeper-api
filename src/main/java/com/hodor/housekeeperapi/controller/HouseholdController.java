@@ -40,8 +40,7 @@ public class HouseholdController {
     }
 
     @DeleteMapping("/1.0/delete/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable("id") Integer id) throws HouseholdNotFoundException {
-        householdService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Boolean> deleteById(@PathVariable("id") Integer id) throws HouseholdNotFoundException {
+        return new ResponseEntity<>(householdService.deleteById(id),HttpStatus.OK);
     }
 }

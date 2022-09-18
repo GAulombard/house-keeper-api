@@ -1,7 +1,6 @@
 package com.hodor.housekeeperapi.dto.read;
 
 import com.hodor.housekeeperapi.entity.Charge;
-import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.entity.Income;
 import com.hodor.housekeeperapi.entity.Loan;
 import lombok.*;

@@ -4,7 +4,6 @@ import com.hodor.housekeeperapi.dto.builder.IncomeBuilder;
 import com.hodor.housekeeperapi.dto.builder.MemberBuilder;
 import com.hodor.housekeeperapi.dto.create.IncomeCreateDto;
 import com.hodor.housekeeperapi.dto.read.IncomeReadDto;
-import com.hodor.housekeeperapi.dto.read.MemberCompactReadDto;
 import com.hodor.housekeeperapi.entity.Income;
 import com.hodor.housekeeperapi.entity.Member;
 import com.hodor.housekeeperapi.exception.IncomeNotFoundException;
@@ -52,9 +51,8 @@ public class IncomeServiceImpl implements IncomeService {
         List<Income> incomes = incomeRepository.findAll();
         List<IncomeReadDto> readDtos = new ArrayList<>();
 
-        incomes.iterator().forEachRemaining(income -> {
-            readDtos.add(incomeBuilder.incomeToIncomeReadDto(income,memberBuilder.memberToMemberCompactReadDto(income.getMember())));
-        });
+        incomes.iterator().forEachRemaining(income -> readDtos.add(incomeBuilder.incomeToIncomeReadDto(income,
+                memberBuilder.memberToMemberCompactReadDto(income.getMember()))));
 
         return readDtos;
     }

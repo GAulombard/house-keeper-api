@@ -7,7 +7,6 @@ import com.hodor.housekeeperapi.dto.update.HouseholdUpdateDto;
 import com.hodor.housekeeperapi.entity.Household;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,15 +26,6 @@ public class HouseholdBuilder {
         readDto.setCharges(household.getCharges());
         readDto.setLoans(household.getLoans());
         return readDto;
-    }
-
-    public List<HouseholdReadDto> householdToHouseholdReadDto(List<Household> households, List<MemberCompactReadDto> members){
-        List<HouseholdReadDto> readDtos = new ArrayList<>();
-        households.iterator().forEachRemaining(household -> {
-            readDtos.add(householdToHouseholdReadDto(household,members));
-        });
-
-        return readDtos;
     }
 
     public Household householdUpdateDtoToHousehold(HouseholdUpdateDto updateDto) {
