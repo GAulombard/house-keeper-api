@@ -15,6 +15,7 @@ import java.util.List;
 public class HouseholdBuilder {
 
     private JointLoanBuilder jointLoanBuilder;
+    private JointChargeBuilder jointChargeBuilder;
 
     public Household householdCreateDtoToHousehold(HouseholdCreateDto createDto) {
         Household household = new Household();
@@ -27,7 +28,7 @@ public class HouseholdBuilder {
         readDto.setId(household.getId());
         readDto.setName(household.getName());
         readDto.setMembers(members);
-        readDto.setCharges(household.getCharges());
+        readDto.setCharges(jointChargeBuilder.jointChargeToJointChargeReadDto(household.getCharges()));
         readDto.setLoans(jointLoanBuilder.jointLoanToJointLoanReadDto(household.getLoans()));
         return readDto;
     }

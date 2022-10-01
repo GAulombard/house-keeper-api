@@ -18,7 +18,7 @@ public class HouseholdReadDto implements Serializable {
     private Integer id;
     private String name;
     private List<MemberCompactReadDto> members;
-    private List<JointCharge> charges;
+    private List<JointChargeReadDto> charges;
     private List<JointLoanReadDto> loans;
 
 }

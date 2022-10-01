@@ -30,8 +30,8 @@ public class JointLoanBuilder {
 
     public JointLoanReadDto jointLoanToJointLoanReadDto(JointLoan jointLoan) {
         JointLoanReadDto readDto = new JointLoanReadDto();
-        readDto.setFinalDate(jointLoan.getFinalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")));
-        readDto.setOriginalDate(jointLoan.getOriginalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")));
+        readDto.setFinalDate(jointLoan.getFinalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        readDto.setOriginalDate(jointLoan.getOriginalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         readDto.setReference(jointLoan.getReference());
         readDto.setLoanType(jointLoan.getLoanType().getLabel());
         readDto.setLabel(jointLoan.getLabel());
