@@ -8,6 +8,7 @@ import com.hodor.housekeeperapi.entity.Household;
 import com.hodor.housekeeperapi.entity.JointCharge;
 import com.hodor.housekeeperapi.entity.JointLoan;
 import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
+import com.hodor.housekeeperapi.exception.JointChargeNotFoundException;
 import com.hodor.housekeeperapi.exception.JointLoanNotFoundException;
 import com.hodor.housekeeperapi.repository.HouseholdRepository;
 import com.hodor.housekeeperapi.repository.JointChargeRepository;
@@ -37,9 +38,9 @@ public class JointChargeServiceImpl implements JointChargeService {
     }
 
     @Override
-    public JointChargeReadDto readById(Integer id) throws JointLoanNotFoundException {
+    public JointChargeReadDto readById(Integer id) throws JointChargeNotFoundException {
         JointCharge jointCharge = jointChargeRepository.findById(id)
-                .orElseThrow(() -> new JointLoanNotFoundException(JOINT_CHARGE_NOT_FOUND));
+                .orElseThrow(() -> new JointChargeNotFoundException(JOINT_CHARGE_NOT_FOUND));
         return jointChargeBuilder.jointChargeToJointChargeReadDto(jointCharge);
     }
 
@@ -50,8 +51,8 @@ public class JointChargeServiceImpl implements JointChargeService {
     }
 
     @Override
-    public JointChargeReadDto update(JointChargeUpdateDto jointChargeUpdateDto) throws JointLoanNotFoundException, HouseholdNotFoundException {
-        if(!jointChargeRepository.existsById(jointChargeUpdateDto.getId())) throw new JointLoanNotFoundException(JOINT_CHARGE_NOT_FOUND);
+    public JointChargeReadDto update(JointChargeUpdateDto jointChargeUpdateDto) throws JointChargeNotFoundException, HouseholdNotFoundException {
+        if(!jointChargeRepository.existsById(jointChargeUpdateDto.getId())) throw new JointChargeNotFoundException(JOINT_CHARGE_NOT_FOUND);
         Household household = householdRepository.findById(jointChargeUpdateDto.getHouseholdId())
                 .orElseThrow(() -> new HouseholdNotFoundException(HOUSEHOLD_NOT_FOUND));
         JointCharge jointCharge = jointChargeRepository.save(jointChargeBuilder.jointChargeUpdateDtoToJointCharge(jointChargeUpdateDto,household));
@@ -59,8 +60,8 @@ public class JointChargeServiceImpl implements JointChargeService {
     }
 
     @Override
-    public Boolean deleteById(Integer id) throws JointLoanNotFoundException {
-        if(!jointChargeRepository.existsById(id)) throw new JointLoanNotFoundException(JOINT_CHARGE_NOT_FOUND);
+    public Boolean deleteById(Integer id) throws JointChargeNotFoundException {
+        if(!jointChargeRepository.existsById(id)) throw new JointChargeNotFoundException(JOINT_CHARGE_NOT_FOUND);
         jointChargeRepository.deleteById(id);
         return true;
     }

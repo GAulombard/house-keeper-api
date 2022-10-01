@@ -4,6 +4,7 @@ import com.hodor.housekeeperapi.dto.create.JointChargeCreateDto;
 import com.hodor.housekeeperapi.dto.read.JointChargeReadDto;
 import com.hodor.housekeeperapi.dto.update.JointChargeUpdateDto;
 import com.hodor.housekeeperapi.exception.HouseholdNotFoundException;
+import com.hodor.housekeeperapi.exception.JointChargeNotFoundException;
 import com.hodor.housekeeperapi.exception.JointLoanNotFoundException;
 
 import java.util.List;
@@ -11,11 +12,11 @@ import java.util.List;
 public interface JointChargeService {
     JointChargeReadDto create(JointChargeCreateDto jointChargeCreateDto) throws HouseholdNotFoundException;
 
-    JointChargeReadDto readById(Integer id) throws JointLoanNotFoundException;
+    JointChargeReadDto readById(Integer id) throws JointChargeNotFoundException;
 
     List<JointChargeReadDto> readAll();
 
-    JointChargeReadDto update(JointChargeUpdateDto jointChargeUpdateDto) throws JointLoanNotFoundException, HouseholdNotFoundException;
+    JointChargeReadDto update(JointChargeUpdateDto jointChargeUpdateDto) throws HouseholdNotFoundException, JointChargeNotFoundException;
 
-    Boolean deleteById(Integer id) throws JointLoanNotFoundException;
+    Boolean deleteById(Integer id) throws JointChargeNotFoundException;
 }
