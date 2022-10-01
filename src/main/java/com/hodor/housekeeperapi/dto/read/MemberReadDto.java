@@ -1,8 +1,5 @@
 package com.hodor.housekeeperapi.dto.read;
 
-import com.hodor.housekeeperapi.entity.Charge;
-import com.hodor.housekeeperapi.entity.Income;
-import com.hodor.housekeeperapi.entity.Loan;
 import lombok.*;
 
 import java.io.Serializable;
@@ -21,7 +18,7 @@ public class MemberReadDto implements Serializable {
     private String firstName;
     private String lastName;
     private String mail;
-    private List<Charge> charges;
-    private List<Loan> loans;
-    private List<Income> incomes;
+    private List<ChargeReadDto> charges;
+    private List<LoanReadDto> loans;
+    private List<IncomeCompactReadDto> incomes;
 }

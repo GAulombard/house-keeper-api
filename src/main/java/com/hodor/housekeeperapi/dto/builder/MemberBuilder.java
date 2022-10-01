@@ -17,6 +17,9 @@ import java.util.List;
 public class MemberBuilder {
 
     private ChargeBuilder chargeBuilder;
+    private LoanBuilder loanBuilder;
+    private IncomeBuilder incomeBuilder;
+
     public Member memberCreateDtoToMember(MemberCreateDto createDto, Household household) {
         Member member = new Member();
         member.setHousehold(household);
@@ -33,7 +36,9 @@ public class MemberBuilder {
         readDto.setFirstName(member.getFirstName());
         readDto.setLastName(member.getLastName());
         readDto.setMail(member.getMail());
-        readDto.setCharges(null); //todo:replace by list of charges
+        readDto.setCharges(chargeBuilder.chargeToChargeReadDto(member.getCharges()));
+        readDto.setLoans(loanBuilder.loanToLoanReadDto(member.getLoans()));
+        readDto.setIncomes(incomeBuilder.incomeToIncomeCompactReadDto(member.getIncomes()));
         return readDto;
     }
 
