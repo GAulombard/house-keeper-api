@@ -16,6 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Table(name = "charge")
 public class Charge implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
