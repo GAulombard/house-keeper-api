@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -36,9 +37,25 @@ public class MemberBuilder {
         readDto.setFirstName(member.getFirstName());
         readDto.setLastName(member.getLastName());
         readDto.setMail(member.getMail());
+
+        if (member.getCharges() != null) {
         readDto.setCharges(chargeBuilder.chargeToChargeReadDto(member.getCharges()));
-        readDto.setLoans(loanBuilder.loanToLoanReadDto(member.getLoans()));
-        readDto.setIncomes(incomeBuilder.incomeToIncomeCompactReadDto(member.getIncomes()));
+        } else {
+            readDto.setCharges(Arrays.asList());
+        }
+
+        if (member.getLoans() != null) {
+            readDto.setLoans(loanBuilder.loanToLoanReadDto(member.getLoans()));
+        } else {
+            readDto.setLoans(Arrays.asList());
+        }
+
+        if (member.getIncomes() != null) {
+            readDto.setIncomes(incomeBuilder.incomeToIncomeCompactReadDto(member.getIncomes()));
+        } else {
+            readDto.setIncomes(Arrays.asList());
+        }
+
         return readDto;
     }
 

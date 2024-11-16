@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -22,7 +23,7 @@ public class LoanCreateDto implements Serializable {
     private String reference;
     private LoanType loanType;
     private RecurrenceType recurrenceType;
-    private LocalDateTime originalDate;
-    private LocalDateTime finalDate;
+    private LocalDate originalDate;
+    private LocalDate finalDate;
 
 }

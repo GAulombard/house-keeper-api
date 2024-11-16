@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class JointLoanReadDto implements Serializable {
     private String reference;
     private String loanType;
     private String recurrenceType;
-    private String originalDate;
-    private String finalDate;
+    private LocalDate originalDate;
+    private LocalDate finalDate;
 
 }

@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,11 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "loan")
-public class Loan implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class Loan extends RootEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -29,21 +26,11 @@ public class Loan implements Serializable {
     private String label;
     private Long value;
     private String reference;
+    @Enumerated(EnumType.STRING)
     private LoanType loanType;
+    @Enumerated(EnumType.STRING)
     private RecurrenceType recurrenceType;
-    private LocalDateTime originalDate;
-    private LocalDateTime finalDate;
+    private LocalDate originalDate;
+    private LocalDate finalDate;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Loan loan = (Loan) o;
-        return id != null && Objects.equals(id, loan.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

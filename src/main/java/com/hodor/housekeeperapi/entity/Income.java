@@ -15,11 +15,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Income implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class Income extends RootEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -27,21 +23,10 @@ public class Income implements Serializable {
 
     private String label;
     private Long value;
-    private RecurrenceType recurrenceType;
-    private IncomeType incomeType;
     private String reference;
+    @Enumerated(EnumType.STRING)
+    private RecurrenceType recurrenceType;
+    @Enumerated(EnumType.STRING)
+    private IncomeType incomeType;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Income income = (Income) o;
-        return id != null && Objects.equals(id, income.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

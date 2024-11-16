@@ -6,7 +6,9 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,11 +18,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JointLoan implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class JointLoan extends RootEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "household_id")
@@ -29,21 +27,11 @@ public class JointLoan implements Serializable {
     private String label;
     private Long value;
     private String reference;
+    @Enumerated(EnumType.STRING)
     private LoanType loanType;
+    @Enumerated(EnumType.STRING)
     private RecurrenceType recurrenceType;
-    private LocalDateTime originalDate;
-    private LocalDateTime finalDate;
+    private LocalDate originalDate;
+    private LocalDate finalDate;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        JointLoan jointLoan = (JointLoan) o;
-        return id != null && Objects.equals(id, jointLoan.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

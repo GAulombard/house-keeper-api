@@ -14,12 +14,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class Member extends RootEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "household_id")
@@ -30,28 +25,12 @@ public class Member implements Serializable {
     private String mail;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member",cascade = CascadeType.ALL)
-    @ToString.Exclude
     private List<Charge> charges;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member",cascade = CascadeType.ALL)
-    @ToString.Exclude
     private List<Loan> loans;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member",cascade = CascadeType.ALL)
-    @ToString.Exclude
     private List<Income> incomes = new ArrayList<>();
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Member member = (Member) o;
-        return id != null && Objects.equals(id, member.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

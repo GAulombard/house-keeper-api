@@ -41,7 +41,7 @@ public class ChargeBuilder {
 
     public List<ChargeReadDto> chargeToChargeReadDto(List<Charge> charges) {
         List<ChargeReadDto> readDtos = new ArrayList<>();
-        charges.iterator().forEachRemaining(charge ->
+        charges.forEach(charge ->
                 readDtos.add(chargeToChargeReadDto(charge)));
         return readDtos;
     }

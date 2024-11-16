@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -29,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
     private static final String HOUSEHOLD_NOT_FOUND = "Household not found.";
 
     @Override
+    @Transactional
     public MemberReadDto create(MemberCreateDto createDto) throws HouseholdNotFoundException {
 
         Household household = householdRepository.findById(createDto.getHousehold())

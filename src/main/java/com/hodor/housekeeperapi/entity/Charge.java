@@ -15,12 +15,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "charge")
-public class Charge implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class Charge extends RootEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -29,19 +24,9 @@ public class Charge implements Serializable {
     private String label;
     private Long value;
     private String reference;
+    @Enumerated(EnumType.STRING)
     private ChargeType chargeType;
+    @Enumerated(EnumType.STRING)
     private RecurrenceType recurrenceType;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Charge charge = (Charge) o;
-        return id != null && Objects.equals(id, charge.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

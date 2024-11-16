@@ -15,11 +15,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JointCharge implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class JointCharge extends RootEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "household_id")
@@ -28,19 +24,9 @@ public class JointCharge implements Serializable {
     private String label;
     private Long value;
     private String reference;
+    @Enumerated(EnumType.STRING)
     private ChargeType chargeType;
+    @Enumerated(EnumType.STRING)
     private RecurrenceType recurrenceType;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        JointCharge jointCharge = (JointCharge) o;
-        return id != null && Objects.equals(id, jointCharge.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
